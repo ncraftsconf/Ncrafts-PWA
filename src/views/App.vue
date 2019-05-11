@@ -12,6 +12,10 @@
 </script>
 
 <style>
+    html {
+        zoom: reset;
+    }
+
     .secondary-background-color {
         background: #39c8b7;
         color: #fff;
@@ -29,17 +33,23 @@
     nav a.button-collapse {
         color: #39c8b7;
     }
-    
+
     a {
         color: #39c8b7;
     }
 
     .tabs.tabs-transparent .tab a:hover, .tabs.tabs-transparent .tab a.active {
         color: #39c8b7;
+        border-bottom: 2px solid #39c8b7;
     }
 
     .tabs.tabs-transparent .indicator {
         background-color: #39c8b7;
+    }
+
+    .container .row {
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .brand-logo {
@@ -60,6 +70,15 @@
 
     div.rounded {
         border-radius: 10px;
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    }
+
+    div#schedule {
+        padding-top: 30vh;
+    }
+
+    div#schedule>.row>div.card {
+        margin: -8px 0;
         box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     }
 </style>
