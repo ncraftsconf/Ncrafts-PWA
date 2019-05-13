@@ -1,9 +1,5 @@
 <template>
     <div v-if="isBreak" class="event col s12 m6 l4 break-card">
-        <div class="chip">
-            {{ event.time }}
-        </div>
-
         <div class="card rounded">
             <div class="card-content center">
                 <span class="card-title grey-text text-darken-4">
@@ -15,21 +11,32 @@
         </div>
     </div>
 
-    <div v-else-if="!isBreak" :id="event.id" class="event col s12 m6 l4">
+    <div v-else-if="isTime" class="event-time col s12 m6 l4">
         <div class="chip">
             {{ event.time }}
         </div>
+    </div>
+
+    <div v-else-if="!isBreak" :id="event.id" class="event col s12 m6 l4">
+        
+        <div class="chip right secondary-background-color">
+            {{ event.room }}
+        </div>
 
         <div class="card rounded" @click="showDetails = !showDetails">
-            <div class="card-image waves-effect waves-block waves-light rounded">
-                <img class="activator" :src="'//ncrafts.io' + event.speakerPhoto">
-            </div>
             <div class="card-content">
                 <a class="btn-floating halfway-fab waves-effect waves-light red" @click="bookmark()">
                     <i class="material-icons">{{ isBookmarked ? 'bookmark' : 'bookmark_border' }}</i>
                 </a>
-                <span class="card-title activator grey-text text-darken-4">{{event.title}}<i class="material-icons right">more_vert</i></span>
-                <p><a>{{event.speakerName}}</a></p>
+                <div class="row valign-wrapper">
+                    <div class="col s2">
+                        <img :src="'//ncrafts.io' + event.speakerPhoto" alt="" class="circle responsive-img">
+                    </div>
+                    <div class="col s10">
+                        <span class="card-title activator grey-text text-darken-4">{{event.title}}<i class="material-icons right">more_vert</i></span>
+                        <p><a>{{event.speakerName}}</a></p>
+                    </div>
+                </div>
             </div>
             <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4">{{ event.title }}<i class="material-icons right">close</i></span>
@@ -40,12 +47,6 @@
                         {{ tag }}
                     </div>
                  </div>
-            </div>
-
-            <div v-if="event.tags" class="card-action rounded-bottom">
-                <div v-for="(tag, index) in event.tags" :key="index" class="chip event-tag">
-                    {{ tag }}
-                </div>
             </div>
 
             <div class="card-action rounded-bottom">
@@ -105,6 +106,9 @@
         computed: {
             isBreak: function () {
                 return this.event.type.includes('break') || this.event.type.includes('lunch');
+            },
+            isTime: function () {
+                return this.event.type.includes('time');
             }
         },
         mounted() {
@@ -118,11 +122,20 @@
 
 <style scoped>
     .event{
-        margin-top: 40px;
+        margin-top: 10px;
         margin-bottom: 40px;
     }
 
+    .card {
+        margin-top: 35px;
+    }
+
+    .event-time {
+        margin-top: 40px;
+    }
+
     blockquote {
+        padding: 0;
         border-left: 5px solid #39c8b7;
     }
 
@@ -130,7 +143,7 @@
         padding-top: 20px;
     }
 
-    .event-tag {
+    .chip {
         height: 24px;
         line-height: 24px;
     }

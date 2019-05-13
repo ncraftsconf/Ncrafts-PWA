@@ -6,7 +6,7 @@
             <div class="row">
                 <div v-for="(day, index) in days" :key="index" class="card">
                     <div class="card-content">
-                        <router-link :to="'/Schedule/' + day.day + '/1'">
+                        <router-link :to="'/Schedule/' + day.day + '/0'">
                             <span class="card-title activator grey-text text-darken-4">{{ day.title }}</span>
                             <p><a>{{ day.date }}</a></p>
                         </router-link>
@@ -35,11 +35,11 @@
             return {
                 scheduleService: new ScheduleService(),
                 days: null,
-                loading: true
+                loading: true,
             }
         },
         components: {
-            Menu,
+            Menu
         },
         methods: {
             fetchDatas: function ()
