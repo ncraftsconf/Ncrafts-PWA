@@ -14,19 +14,25 @@
 // Names of the two caches used in this version of the service worker.
 // Change to v2, etc. when you update any of the local resources, which will
 // in turn trigger the install event again.
-const PRECACHE = 'precache-v1';
+const PRECACHE = 'ncrafts-precache-v1';
 const RUNTIME = 'runtime';
 
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
   '/',
   'index.html',
-  './', // Alias for index.html
-  '/dist/build.js'
+  '/assets/css/material-icons.css',
+  '/assets/css/materialize.min.css',
+  '/dist/build.js',
+  '/assets/js/jquery-3.3.1.min.js',
+  '/assets/assets/js/materialize.min.js',
+  '/assets/js/smallchat.min.js'
 ];
 
 // The install handler takes care of precaching the resources we always need.
 self.addEventListener('install', event => {
+  console.log('The service worker is being installed.');
+	
   event.waitUntil(
     caches.open(PRECACHE)
       .then(cache => cache.addAll(PRECACHE_URLS))
@@ -37,6 +43,7 @@ self.addEventListener('install', event => {
 // The activate handler takes care of cleaning up old caches.
 self.addEventListener('activate', event => {
   const currentCaches = [PRECACHE, RUNTIME];
+
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return cacheNames.filter(cacheName => !currentCaches.includes(cacheName));
