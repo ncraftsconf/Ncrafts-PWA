@@ -20,7 +20,7 @@ const RUNTIME = 'runtime';
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
   '/',
-  'index.html',
+  '/index.html',
   '/assets/css/material-icons.css',
   '/assets/css/materialize.min.css',
   '/dist/build.js',
