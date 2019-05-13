@@ -18,11 +18,12 @@ self.addEventListener('install', event => {
       // can only be consumed once. Since we are consuming this
       // once by cache and once by the browser for fetch, we need
       // to clone the response.
-      var fetchRequest = event.request.clone();
+      if (event.request) {
+        var fetchRequest = event.request.clone();
       
-      if (fetchRequest.cache === 'only-if-cached' && fetchRequest.mode !== 'same-origin') 
-      {
-            return;
+        if (fetchRequest.cache === 'only-if-cached' && fetchRequest.mode !== 'same-origin') {
+              return;
+        }
       }
       
       event.waitUntil(precache()
@@ -58,7 +59,7 @@ self.addEventListener('fetch', event => {
 			  .respondWith(fromServer(fetchRequest)
 			  .catch(fromCache(fetchRequest)));
 
-      event.waitUntil(update(fetchRequest));
+    event.waitUntil(update(fetchRequest));
 });
 
 function precache() {
