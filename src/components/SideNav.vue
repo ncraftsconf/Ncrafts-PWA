@@ -122,9 +122,4 @@
     .side-nav .subheader {
         color: rgba(255, 255, 255, 0.54);
     }
-
-    .side-nav-header {
-        margin: 15px;
-    }
-
 </style>
