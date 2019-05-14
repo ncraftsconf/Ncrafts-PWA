@@ -130,6 +130,10 @@
         margin-top: 35px;
     }
 
+    .card-content {
+        padding: 15px;
+    }
+
     .event-time {
         margin-top: 40px;
     }
@@ -146,5 +150,9 @@
     .chip {
         height: 24px;
         line-height: 24px;
+    }
+
+    .row.valign-wrapper {
+        margin-bottom: 0;
     }
 </style>
