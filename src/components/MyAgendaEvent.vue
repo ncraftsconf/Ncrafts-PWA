@@ -1,11 +1,23 @@
 <template>
-    <div v-if="isTime" class="event-time col s12 m6 l4">
+    <div v-if="isTime" class="event-time col s12">
         <div class="chip">
             {{ event.time }}
         </div>
     </div>
 
-    <div v-else v-show="isVisible" :id="event.id" class="event col s12 m6 l4">
+    <div v-else-if="isBreak" class="event col s12 break-card">
+        <div class="card rounded">
+            <div class="card-content center">
+                <span class="card-title grey-text text-darken-4">
+                    <blockquote>
+                        {{event.title}}
+                    </blockquote>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div v-else-if="!isBreak" v-show="isVisible" :id="event.id" class="event col s12 m6 l4">
         <div class="chip right secondary-background-color">
             {{ event.room }}
         </div>
@@ -85,6 +97,10 @@
         computed: {
             isTime: function () {
                 return this.event.type.includes('time');
+            },
+
+            isBreak: function () {
+                return this.event.type.includes('break') || this.event.type.includes('lunch');
             }
         }
     }

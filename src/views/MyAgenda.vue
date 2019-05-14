@@ -47,7 +47,7 @@
             },
 
             removeDuplicateEvents: function (events) {
-                return events.map(e => e.title + e.time)
+                return events.map(e => e.title)
 
                 // store the keys of the unique objects
                 .map((e, i, final) => final.indexOf(e) === i && i)
@@ -67,6 +67,10 @@
                     return 1;
                 }
                 return 0;
+            },
+
+            isBreak: function(event) {
+                return event.type.includes('break') || event.type.includes('lunch');
             }
         },
         computed: {
@@ -82,7 +86,7 @@
                 
                 let allEventsOfCurrentDay = [].concat.apply([], currentDaySchedule.rooms.map(room => room.events));
 
-                let bookmarkedEventsOfCurrentDay = allEventsOfCurrentDay.filter(event => bookmarkedEvents.includes(event.id));
+                let bookmarkedEventsOfCurrentDay = allEventsOfCurrentDay.filter(event => bookmarkedEvents.includes(event.id) || this.isBreak(event));
                 
                 let sortedBookmarkedEventsOfCurrentDay = bookmarkedEventsOfCurrentDay.sort(this.sortByTime);
 

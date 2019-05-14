@@ -1,5 +1,11 @@
 <template>
-    <div v-if="isBreak" class="event col s12 m6 l4 break-card">
+    <div v-if="isTime" class="event-time col s12">
+        <div class="chip">
+            {{ event.time }}
+        </div>
+    </div>
+
+    <div v-else-if="isBreak" class="event col s12 break-card">
         <div class="card rounded">
             <div class="card-content center">
                 <span class="card-title grey-text text-darken-4">
@@ -11,14 +17,7 @@
         </div>
     </div>
 
-    <div v-else-if="isTime" class="event-time col s12 m6 l4">
-        <div class="chip">
-            {{ event.time }}
-        </div>
-    </div>
-
     <div v-else-if="!isBreak" :id="event.id" class="event col s12 m6 l4">
-        
         <div class="chip right secondary-background-color">
             {{ event.room }}
         </div>
