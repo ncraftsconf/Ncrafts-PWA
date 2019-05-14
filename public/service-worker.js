@@ -1,13 +1,13 @@
-var CACHE = 'ncrafts-precache';
-var precacheFiles = [
+const CACHE = 'ncrafts-precache';
+const precacheFiles = [
       '/',
-  '/index.html',
-  '/assets/css/material-icons.css',
-  '/assets/css/materialize.min.css',
-  '/dist/build.js',
-  '/assets/js/jquery-3.3.1.min.js',
-  '/assets/assets/js/materialize.min.js',
-  '/assets/js/smallchat.min.js'
+      '/index.html',
+      '/assets/css/material-icons.css',
+      '/assets/css/materialize.min.css',
+      '/dist/build.js',
+      '/assets/js/jquery-3.3.1.min.js',
+      '/assets/js/materialize.min.js',
+      '/assets/js/smallchat.min.js'
 ];
 
 //Install stage sets up the cache-array to configure pre-cache content
@@ -55,11 +55,11 @@ self.addEventListener('fetch', event => {
             return;
       }
 
-		event
-			  .respondWith(fromServer(fetchRequest)
-			  .catch(fromCache(fetchRequest)));
+      event
+            .respondWith(fromServer(fetchRequest)
+            .catch(fromCache(fetchRequest)));
 
-    event.waitUntil(update(fetchRequest));
+      event.waitUntil(update(fetchRequest));
 });
 
 function precache() {
