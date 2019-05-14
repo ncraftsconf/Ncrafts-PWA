@@ -88,7 +88,23 @@
 
                 let sortedUniquesBookmarkedEventsOfCurrentDay = this.removeDuplicateEvents(sortedBookmarkedEventsOfCurrentDay);
 
-                return sortedUniquesBookmarkedEventsOfCurrentDay;
+                let sortedBookmarkedsEventsWithUniqueTime = [];
+
+                for (var i=0; i<sortedUniquesBookmarkedEventsOfCurrentDay.length; i++) {
+                    let event = sortedUniquesBookmarkedEventsOfCurrentDay[i];
+
+                    if (!sortedBookmarkedsEventsWithUniqueTime.filter(e => e.type == 'time').map(e => e.time).includes(event.time))
+                    {
+                        sortedBookmarkedsEventsWithUniqueTime.push({
+                            type: 'time',
+                            time: event.time
+                        });
+                    }
+                    
+                    sortedBookmarkedsEventsWithUniqueTime.push(event);
+                }
+
+                return sortedBookmarkedsEventsWithUniqueTime;
             }
         },
         components: {
