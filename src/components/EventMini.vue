@@ -33,7 +33,14 @@
                     </div>
                     <div class="col s10">
                         <span class="card-title activator grey-text text-darken-4">{{event.title}}<i class="material-icons right">more_vert</i></span>
-                        <p><a>{{event.speakerName}}</a></p>
+                        <p>
+                            <a :href="event.twitter" target="_blank">
+                                <div class="chip speaker-name-chip">
+                                    <img src="/assets/img/icon_twitter.png" alt="Twitter">
+                                    {{event.speakerName}}
+                                </div>
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -46,6 +53,13 @@
                         {{ tag }}
                     </div>
                  </div>
+
+                 <a :href="event.twitter" target="_blank">
+                    <div class="chip speaker-name-chip">
+                        <img src="/assets/img/icon_twitter.png" alt="Twitter">
+                        @{{ twitterUsername }}
+                    </div>
+                </a>
             </div>
 
             <div class="card-action rounded-bottom">
@@ -106,8 +120,13 @@
             isBreak: function () {
                 return this.event.type.includes('break') || this.event.type.includes('lunch');
             },
+            
             isTime: function () {
                 return this.event.type.includes('time');
+            },
+
+            twitterUsername: function () {
+                return this.event.twitter.split('twitter.com/')[1];
             }
         },
         mounted() {
@@ -153,5 +172,18 @@
 
     .row.valign-wrapper {
         margin-bottom: 0;
+    }
+
+    .speaker-name-chip {
+        padding-top: 10px;
+        background: #fff;
+        color: #39c8b7;
+        font-size: 14px;
+        font-weight: normal;
+    }
+
+    .speaker-name-chip>img {
+        height: 24px;
+        width: 24px;
     }
 </style>
