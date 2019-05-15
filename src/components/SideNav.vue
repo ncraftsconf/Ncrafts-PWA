@@ -68,6 +68,7 @@
         background-color: #26262733;
         padding-bottom: 140px;
         position: fixed; /* Temp fix for Firefox */
+        overflow: scroll;
     }
   
     .side-nav::before {
