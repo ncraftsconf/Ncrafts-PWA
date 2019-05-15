@@ -16,16 +16,13 @@
         <li><a href="/QrCodeReader" :class="isCurrentRoute('QrCodeReader') ? 'secondary-background-color rounded': 'rounded'">QR Code Reader</a></li>
 
         <li><div class="divider"></div></li>
-        <li><a href="https://ncrafts.io/" target="_blank" class="rounded">NCrafts.io</a></li>
-        
-        <li><div class="divider"></div></li>
         <li><a href="https://videos.ncrafts.io/" target="_blank" class="rounded">Videos</a></li>
 
         <li><div class="divider"></div></li>
         <li><a href="/Intro" :class="isCurrentRoute('Intro') ? 'secondary-background-color rounded': 'rounded'">Help</a></li>
 
         <li><div class="divider"></div></li>
-        <li><a href="https://ncrafts.io/" class="rounded">Desktop version</a></li>
+        <li><a href="https://ncrafts.io/?force-desktop" class="rounded">Desktop version</a></li>
 
         <li><div class="divider"></div></li>
         <li><a class="subheader rounded-top">Follow us</a></li>
