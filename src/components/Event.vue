@@ -57,6 +57,7 @@
             </div>
 
             <div v-if="event.tags" class="card-action rounded-bottom">
+                <div class="chip event-tag event-type">{{ event.type }}</div>
                 <div v-for="(tag, index) in event.tags" :key="index" class="chip event-tag">
                     {{ tag }}
                 </div>
@@ -164,5 +165,10 @@
     .speaker-name-chip>img {
         height: 24px;
         width: 24px;
+    }
+
+    .event-type {
+        background: #262627;
+        color: #fff;
     }
 </style>
