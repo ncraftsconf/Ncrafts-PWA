@@ -31,17 +31,13 @@
         methods: {
             fetchDatas: function ()
             {
+                let speakers = this.speakersService.get();
+                this.speakers = speakers;
+                this.loading = false;
+
                 if(navigator.onLine) {
                     this.speakersService.fetch()
-                            .then(speakers =>{
-                                this.speakers = speakers;
-                                this.loading = false;
-                            });
-                }
-                else {
-                    let speakers = this.speakersService.get();
-                    this.speakers = speakers;
-                    this.loading = false;
+                            .then(speakers => this.speakers = speakers);
                 }
             }
         },

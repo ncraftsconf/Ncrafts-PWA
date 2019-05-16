@@ -34,17 +34,13 @@
         methods: {
             fetchDatas: function ()
             {
+                let schedule = this.scheduleService.get();
+                this.currentDaySchedule = schedule.days.find(d => d.day == this.dayNumber)
+                this.loading = false;
+
                 if(navigator.onLine) {
                     this.scheduleService.fetch()
-                            .then(schedule => {
-                                this.currentDaySchedule = schedule.days.find(d => d.day == this.dayNumber);
-                                this.loading = false;
-                            })
-                }
-                else {
-                    let schedule = this.scheduleService.get();
-                    this.currentDaySchedule = schedule.days.find(d => d.day == this.dayNumber)
-                    this.loading = false;
+                            .then(schedule => this.currentDaySchedule = schedule.days.find(d => d.day == this.dayNumber))
                 }
             },
 

@@ -32,17 +32,13 @@
         methods: {
             fetchDatas: function ()
             {
+                let schedule = this.scheduleService.get();
+                this.days = schedule.days.filter(day => day.title.includes('Day'));
+                this.loading = false;
+
                 if(navigator.onLine) {
                     this.scheduleService.fetch()
-                            .then(schedule => {
-                                this.days = schedule.days.filter(day => day.title.includes('Day'));
-                                this.loading = false;
-                            })
-                }
-                else {
-                    let schedule = this.scheduleService.get();
-                    this.days = schedule.days.filter(day => day.title.includes('Day'));
-                    this.loading = false;
+                            .then(schedule => this.days = schedule.days.filter(day => day.title.includes('Day')))
                 }
             },
 
